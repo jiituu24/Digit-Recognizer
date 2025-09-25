@@ -1,11 +1,11 @@
-# Digit Detection with Neural Networks
+# Digit Recognizer with Neural Networks
 
 This project implements a simple neural network for handwritten digit classification using TensorFlow and Keras. It is designed to train on digit image data and predict digit labels for new samples.
 
 ## Project Structure
 
 - `Model.py` / `Model.ipynb`: Defines and trains the neural network model.
-- `model_training.ipynb`: End-to-end workflow for training and prediction.
+- `checking.ipynb`: Loads data, trains the model, makes predictions, and analyzes errors and cost.
 - `train.csv`: Training data (first column: label, remaining columns: pixel values).
 - `test.csv`: Test data (pixel values only).
 - `sample_submission.csv`: Example format for submission.
@@ -13,9 +13,10 @@ This project implements a simple neural network for handwritten digit classifica
 ## How It Works
 
 1. **Data Loading**: Reads CSV files and prepares training and test datasets.
-2. **Model Definition**: Uses a simple feedforward neural network with two hidden layers.
-3. **Training**: Trains the model on the provided training data.
-4. **Prediction**: Predicts digit labels for test data and outputs results.
+2. **Model Training**: Trains the model on the provided training data using `model.fit(X, Y, epochs=500)`.
+3. **Prediction**: Uses `model.predict(X)` to get predictions.
+4. **Error Analysis**: Compares predicted labels to true labels, prints misclassified samples.
+5. **Cost Calculation**: Computes cross-entropy cost using softmax probabilities.
 
 ## Usage
 
@@ -29,19 +30,30 @@ Install dependencies:
 pip install tensorflow numpy
 ```
 
-### Training the Model
-Run the notebook `Model.ipynb` or execute `Model.py` (if implemented as a script) to train the model on `train.csv`.
+### Training and Evaluation
+Run `checking.ipynb` to:
+- Load and preprocess data
+- Train the model
+- Predict and analyze errors
+- Compute cost
 
-### Making Predictions
-Use `model_training.ipynb` to load the trained model and predict on `test.csv`. Results are printed and can be saved for submission.
-
-## Example
+Example code:
 ```python
-# Load and train model
-model.fit(X, Y, epochs=100)
+from Model import model
+import tensorflow as tf
+import numpy as np
+
+# Load data
+# ...see checking.ipynb for details...
+
+# Train model
+model.fit(X, Y, epochs=500)
 
 # Predict
-prediction = tf.nn.softmax(model.predict(xt)).numpy()
+predictions = model.predict(X)
+
+# Error analysis and cost calculation
+# ...see checking.ipynb for details...
 ```
 
 ## Contributing
