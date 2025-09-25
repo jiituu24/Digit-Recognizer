@@ -5,6 +5,7 @@ import csv
 from tensorflow.keras.models import Sequential 
 from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras.losses import SparseCategoricalCrossentropy
+from tensorflow.keras.optimizers import Adam
 
 model = Sequential([
     Dense(25, activation = "relu"),
@@ -13,5 +14,6 @@ model = Sequential([
 ])
 
 model.compile(
-    loss = SparseCategoricalCrossentropy(from_logits = True)
+    loss = SparseCategoricalCrossentropy(from_logits = True),
+    optimizer = Adam(0.001)
 )
